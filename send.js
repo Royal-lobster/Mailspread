@@ -32,7 +32,7 @@ console.log(templateTags);
 // for each template tag of form {{key:value}},
 // create an object with key = key and value = value
 let templateTagObjects = {};
-templateTags.forEach((templateTag) => {
+templateTags?.forEach((templateTag) => {
   let key = templateTag.split(":")[0];
   let value = templateTag.split(":")[1] || "text";
   // remove the {{}} from the key and value using regex
@@ -51,20 +51,18 @@ document.getElementById("card").appendChild(form);
 
 // for each template tag, create a label and text input
 // with the name of the key and value of the value
-if (templateTags.length > 0) {
-  Object.keys(templateTagObjects).forEach((key) => {
-    let label = document.createElement("label");
-    let input = document.createElement("input");
-    label.innerText = key.replace(/_/g, " ");
-    label.style.textTransform = "capitalize";
-    input.setAttribute("type", templateTagObjects[key]);
-    input.setAttribute("name", key);
-    input.setAttribute("required", "");
-    input.setAttribute("placeholder", `Enter ${key.replace(/_/g, " ")}`);
-    form.appendChild(label);
-    form.appendChild(input);
-  });
-}
+Object.keys(templateTagObjects)?.forEach((key) => {
+  let label = document.createElement("label");
+  let input = document.createElement("input");
+  label.innerText = key.replace(/_/g, " ");
+  label.style.textTransform = "capitalize";
+  input.setAttribute("type", templateTagObjects[key]);
+  input.setAttribute("name", key);
+  input.setAttribute("required", "");
+  input.setAttribute("placeholder", `Enter ${key.replace(/_/g, " ")}`);
+  form.appendChild(label);
+  form.appendChild(input);
+});
 // create a submit button
 let submit = document.createElement("input");
 submit.setAttribute("type", "submit");
@@ -77,7 +75,7 @@ form.addEventListener("submit", (e) => {
   // get the values of the inputs
   let inputs = form.querySelectorAll("input");
   let values = {};
-  inputs.forEach((input) => {
+  inputs?.forEach((input) => {
     // if the input is date, convert it to a locale string
     if (input.type === "date") {
       values[input.name] = input.value.toLocaleString();
@@ -88,7 +86,7 @@ form.addEventListener("submit", (e) => {
   console.log(values);
   // replace the template tags in the body with the values
   let newBody = decodedBody;
-  Object.keys(values).forEach((key) => {
+  Object.keys(values)?.forEach((key) => {
     let value = values[key];
     let regex = new RegExp(`{{${key}(:.*?)?}}`, "g");
     newBody = newBody.replace(regex, value);
