@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MailShare Create Template</title>
+  </head>
+  <body>
+    <main class="app">
+      <!-- app branding -->
+      <h1 class="branding">MailSpread <span>Generate</span></h1>
+
+      <form id="templateForm">
+        <!-- input to address -->
+        <label for="to-address">To</label>
+        <input
+          id="toAddress"
+          name="toAddress"
+          type="text"
+          placeholder="Enter to emails (separated by comma)"
+        />
+        <small>you can add multiple emails separated by commas</small>
+
+        <!-- input to subject -->
+        <label for="subject">Subject</label>
+        <input name="subject" type="text" placeholder="Enter subject" />
+
+        <!-- input to body -->
+        <label for="body"
+          >Body
+          <svg
+            style="cursor: pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            width="20px"
+            height="20px"
+            onclick="openModal()"
+          >
+            <path
+              fill="#2196f3"
+              d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
+            />
+            <path
+              fill="#fff"
+              d="M22 22h4v11h-4V22zM26.5 16.5c0 1.379-1.121 2.5-2.5 2.5s-2.5-1.121-2.5-2.5S22.621 14 24 14 26.5 15.121 26.5 16.5z"
+            /></svg
+        ></label>
+        <div class="grow-wrap">
+          <textarea
+            onInput="this.parentNode.dataset.replicatedValue = this.value"
+            class="body-textarea"
+            name="body"
+            placeholder="Enter body"
+          ></textarea>
+        </div>
+
+        <!-- form submit button -->
+        <button type="submit">Generate link</button>
+      </form>
+
+      <!-- modal to show instructions -->
+      <dialog id="modal">
+        <article>
+          <header>
+            <a
+              href="#close"
+              aria-label="Close"
+              class="close"
+              onClick="closeModal()"
+            ></a>
+            How to use Template Tags in body
+          </header>
+          <p>
+            Template Tags are of form <code>{{full_name}}</code>. You can also
+            add types to template tags like this
+            <code>{{roll_number:number}}</code> or
+            <code>{{start_date:date}}</code>
+            the default type is text and hence mentioning it is optional
+          </p>
+        </article>
+      </dialog>
+
+      <!-- footer of app -->
+      <footer class="footer">
+        <p>
+          Made with <span class="heart">&hearts;</span> by
+          <a href="https://srujangurram.me">Srujan Gurram</a>
+        </p>
+      </footer>
+    </main>
+
+    <!-- Embed app.js -->
+    <script src="create.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+  </body>
+</html>

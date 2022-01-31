@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Pacifico&display=swap");
+
+.app {
+  max-width: 800px;
+  margin: 10vh auto 0 auto;
+  padding: 20px;
+}
+
+html::-webkit-scrollbar {
+  width: 0px;
+}
+
+.branding {
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  color: #1ab3e6;
+}
+
+.branding span {
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-weight: 100;
+  color: #fff;
+}
+
+/* Text area auto resize code */
+.grow-wrap {
+  display: grid;
+}
+.grow-wrap::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  margin: 10px 0 !important;
+  visibility: hidden;
+}
+.grow-wrap > .body-textarea {
+  resize: none;
+  overflow: hidden;
+}
+.grow-wrap > .body-textarea,
+.grow-wrap::after {
+  padding: 0.5rem;
+  font: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.card {
+  margin: 0 auto;
+}
+.subject-header {
+  margin-bottom: 30px;
+}
+.form {
+  margin: 0 auto;
+}
+.subject-indicator {
+  background-color: #1ab3e663 !important;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.footer {
+  padding-block: 30px;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-weight: 100;
+  color: #fff;
+}
