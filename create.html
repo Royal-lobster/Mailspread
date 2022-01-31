@@ -69,7 +69,8 @@
           id="toAddress"
           required
           name="toAddress"
-          type="text"
+          multiple
+          type="email"
           placeholder="Enter to emails (separated by comma)"
         />
         <small>you can add multiple emails separated by commas</small>
@@ -111,7 +112,7 @@
             onInput="this.parentNode.dataset.replicatedValue = this.value"
             class="body-textarea"
             name="body"
-            placeholder="Enter body"
+            placeholder="Enter body (click on i button for info)"
           ></textarea>
         </div>
 
