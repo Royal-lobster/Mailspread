@@ -1,7 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
+    <!-- HTML Meta Tags -->
+    <title>Mailspread</title>
+    <meta
+      name="description"
+      content="Create and share email templates with ease !"
+    />
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://mailspread.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mailspread" />
+    <meta
+      property="og:description"
+      content="Create and share email templates with ease !"
+    />
+    <meta property="og:image" content="https://i.imgur.com/JZViZMR.png" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="" />
+    <meta property="twitter:url" content="https://mailspread.netlify.app/" />
+    <meta name="twitter:title" content="Mailspread" />
+    <meta
+      name="twitter:description"
+      content="Create and share email templates with ease !"
+    />
+    <meta name="twitter:image" content="https://i.imgur.com/JZViZMR.png" />
+
+    <!-- style sheet links -->
     <link
       rel="stylesheet"
       type="text/css"
@@ -11,16 +42,16 @@
       rel="stylesheet"
       href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
     />
-    <link rel="stylesheet" href="highlight.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MailShare Create Template</title>
+    <link rel="stylesheet" href="./styles/highlight.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
   </head>
+
   <body>
     <main class="app">
       <!-- app branding -->
-      <h1 class="branding">MailSpread <span>Generate</span></h1>
+      <h1 class="branding">
+        <a href="index.html">MailSpread</a> <span>Generate</span>
+      </h1>
 
       <form id="templateForm">
         <!-- input to address -->
@@ -44,8 +75,8 @@
         />
 
         <!-- input to body -->
-        <label for="body"
-          >Body
+        <label for="body">
+          Body
           <svg
             style="cursor: pointer"
             xmlns="http://www.w3.org/2000/svg"
@@ -61,8 +92,9 @@
             <path
               fill="#fff"
               d="M22 22h4v11h-4V22zM26.5 16.5c0 1.379-1.121 2.5-2.5 2.5s-2.5-1.121-2.5-2.5S22.621 14 24 14 26.5 15.121 26.5 16.5z"
-            /></svg
-        ></label>
+            />
+          </svg>
+        </label>
         <div class="textarea-container">
           <textarea
             spellcheck="false"
@@ -110,16 +142,10 @@
     </main>
 
     <!-- Embed app.js -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="jquery.min.js"></script>
+    <script src="./lib/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="highlight.js"></script>
-    <script src="autosize.min.js"></script>
-    <script src="create.js"></script>
+    <script src="./lib/highlight.js"></script>
+    <script src="./lib/autosize.min.js"></script>
+    <script src="./js/create.js"></script>
   </body>
 </html>

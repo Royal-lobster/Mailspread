@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
+    <!-- HTML Meta Tags -->
+    <title>Mailspread</title>
+    <meta
+      name="description"
+      content="Create and share email templates with ease !"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- icons and themes -->
+    <meta name="theme-color" content="#11191f" />
+    <link
+      rel="icon"
+      href="./imgs/favicon.svg"
+      sizes="any"
+      type="image/svg+xml"
+    />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://mailspread.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mailspread" />
+    <meta
+      property="og:description"
+      content="Create and share email templates with ease !"
+    />
+    <meta property="og:image" content="https://i.imgur.com/JZViZMR.png" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="" />
+    <meta property="twitter:url" content="https://mailspread.netlify.app/" />
+    <meta name="twitter:title" content="Mailspread" />
+    <meta
+      name="twitter:description"
+      content="Create and share email templates with ease !"
+    />
+    <meta name="twitter:image" content="https://i.imgur.com/JZViZMR.png" />
+
     <link
       rel="stylesheet"
       href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/global.css" />
     <title>MailShare Send Template</title>
   </head>
   <body>
     <main class="app">
-      <h1 class="branding">MailSpread <span>Send</span></h1>
+      <h1 class="branding">
+        <a href="index.html">MailSpread</a> <span>Send</span>
+      </h1>
       <article class="card" id="card">
         <header class="subject-header">
           <b class="subject-indicator">Tamplate Subject:</b>
@@ -28,6 +67,6 @@
       </p>
     </footer>
     <!-- link send.js script -->
-    <script src="send.js"></script>
+    <script src="../js/send.js"></script>
   </body>
 </html>
