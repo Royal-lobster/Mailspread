@@ -1,5 +1,7 @@
 const templateForm = document.getElementById("templateForm");
 const submitBtn = document.getElementById("submitBtn");
+
+// form submit function
 templateForm.addEventListener("submit", function (e) {
   submitBtn.setAttribute("aria-busy", "true");
   submitBtn.textContent = "Generating...";
@@ -70,6 +72,7 @@ templateForm.addEventListener("submit", function (e) {
   }
 });
 
+// modal open and close functions
 const closeModal = () => {
   const modal = document.getElementById("modal");
   modal.removeAttribute("open");
@@ -78,3 +81,25 @@ const openModal = () => {
   const modal = document.getElementById("modal");
   modal.setAttribute("open", "");
 };
+
+// textarea template highlighting
+$(".body-textarea").highlightWithinTextarea({
+  highlight: [
+    {
+      highlight: /\{\{(.*?)\}\}/g,
+      className: "blue-highlight",
+    },
+    {
+      highlight: /:(.*?)}/g,
+      className: "darker-highlight",
+    },
+    {
+      highlight: /ba(na)*/gi,
+      className: "yellow",
+    },
+  ],
+});
+autosize($("textarea"));
+
+// regex to match value part in {{key:value}} starting from : to end }
+const regex = /\{\{(.*?)\}\}/g;

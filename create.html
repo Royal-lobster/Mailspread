@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
     />
+    <link rel="stylesheet" href="highlight.css" />
     <link rel="stylesheet" href="styles.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -62,8 +63,9 @@
               d="M22 22h4v11h-4V22zM26.5 16.5c0 1.379-1.121 2.5-2.5 2.5s-2.5-1.121-2.5-2.5S22.621 14 24 14 26.5 15.121 26.5 16.5z"
             /></svg
         ></label>
-        <div class="grow-wrap">
+        <div class="textarea-container">
           <textarea
+            spellcheck="false"
             required
             onInput="this.parentNode.dataset.replicatedValue = this.value"
             class="body-textarea"
@@ -108,10 +110,16 @@
     </main>
 
     <!-- Embed app.js -->
-    <script src="create.js"></script>
     <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
+    <script src="jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="highlight.js"></script>
+    <script src="autosize.min.js"></script>
+    <script src="create.js"></script>
   </body>
 </html>
