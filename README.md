@@ -8,7 +8,7 @@ Generate Email Tamplates with forms 🔥 useful in situations like bunch of peop
 ## Screenshots
 
 <center>
-<img src="/interface.png"/>
+<img src="./imgs/screenshot.png"/>
 </center>
   
 ## Installation
