@@ -22,7 +22,7 @@ console.log(decodedBody);
 // by lowercasing {{key}} and {{key:value}} and removing all spaces
 let templateRegex = /\{\{(.*?)\}\}/g;
 decodedBody = decodedBody.replace(templateRegex, (match, p1) => {
-  return `{{${p1.toLowerCase().replace(/\s/g, "")}}}`;
+  return `{{${p1.toLowerCase().replace(/\s/g, "_")}}}`;
 });
 
 // parse the decoded Body for template tags

@@ -1,5 +1,22 @@
 const templateForm = document.getElementById("templateForm");
 const submitBtn = document.getElementById("submitBtn");
+const bodyTextArea = document.getElementById("bodyTextArea");
+
+// auto close baraces entered in textarea
+const closeChars = new Map([["{", "}"]]);
+bodyTextArea.addEventListener("keyup", (e) => {
+  if (e.keyCode == 219) {
+    const pos = e.target.selectionStart;
+    const val = [...e.target.value];
+    const char = val.slice(pos - 1, pos)[0];
+    const closeChar = closeChars.get(char);
+    if (closeChar) {
+      val.splice(pos, 0, closeChar);
+      e.target.value = val.join("");
+      e.target.selectionEnd = pos;
+    }
+  }
+});
 
 // form submit function
 templateForm.addEventListener("submit", function (e) {

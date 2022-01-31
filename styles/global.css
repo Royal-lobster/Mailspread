@@ -44,6 +44,7 @@ html::-webkit-scrollbar {
   border: none;
   resize: none;
   width: 100%;
+  padding: 0;
 }
 .blue-highlight {
   background-color: #11556b !important;
