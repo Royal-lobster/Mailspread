@@ -56,7 +56,7 @@ Object.keys(templateTagObjects)?.forEach((key) => {
   let input = document.createElement("input");
   label.innerText = key.replace(/_/g, " ");
   label.style.textTransform = "capitalize";
-  input.setAttribute("type", templateTagObjects[key]);
+  input.setAttribute("type", templateTagObjects[key].replace(/_/g, ""));
   input.setAttribute("name", key);
   input.setAttribute("required", "");
   input.setAttribute("placeholder", `Enter ${key.replace(/_/g, " ")}`);
