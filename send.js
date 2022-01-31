@@ -66,7 +66,7 @@ Object.keys(templateTagObjects)?.forEach((key) => {
 // create a submit button
 let submit = document.createElement("input");
 submit.setAttribute("type", "submit");
-submit.setAttribute("value", "Generate Template in your Email Client");
+submit.setAttribute("value", "Generate in your Email App");
 form.appendChild(submit);
 
 // when the form is submitted prevent default
