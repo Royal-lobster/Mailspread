@@ -1,6 +1,9 @@
 const templateForm = document.getElementById("templateForm");
-
+const submitBtn = document.getElementById("submitBtn");
 templateForm.addEventListener("submit", function (e) {
+  submitBtn.setAttribute("aria-busy", "true");
+  submitBtn.textContent = "Generating...";
+
   e.preventDefault();
 
   const toAddress = templateForm.elements["toAddress"].value;
@@ -24,22 +27,33 @@ templateForm.addEventListener("submit", function (e) {
     const EncodedSubject = btoa(subject);
     const EncodedBody = btoa(body);
 
-    let createAndCopyURL = async () => {
-      //create a new URL at address /send.html
-      const url = `${window.location.origin}/send.html?toAddress=${EncodedToAddress}&subject=${EncodedSubject}&body=${EncodedBody}`;
-
-      //create a tiny url using tinyurl.com
-      fetch(`https://tinyurl.com/create.php?url=${url}`)
-        .then((res) => navigator.clipboard.writeText(res.text()))
-        .catch(() => navigator.clipboard.writeText(url));
-
-      //display a success message
+    let copyAndEndLoading = () => {
       Toastify({
         text: "Copied to clipboard",
         style: {
           background: "linear-gradient(to right, #1ab3e6, #167D99)",
         },
       }).showToast();
+      submitBtn.setAttribute("aria-busy", "");
+      submitBtn.textContent = "Generate link";
+    };
+    let createAndCopyURL = async () => {
+      //create a new URL at address /send.html
+      const url = `${window.location.origin}/send.html?toAddress=${EncodedToAddress}&subject=${EncodedSubject}&body=${EncodedBody}`;
+
+      //create a tiny url using tinyurl.com
+      const tinyUrlRes = await fetch(
+        `https://tinyurl.com/api-create.php?url=${url}`,
+        {
+          referrerPolicy: "strict-origin-when-cross-origin",
+          body: null,
+          method: "GET",
+          mode: "cors",
+          credentials: "omit",
+        }
+      );
+      navigator.clipboard.writeText(await tinyUrlRes.text());
+      copyAndEndLoading();
     };
     createAndCopyURL();
   } else {
@@ -52,6 +66,7 @@ templateForm.addEventListener("submit", function (e) {
         },
       }).showToast();
     }
+    submitBtn.setAttribute("aria-busy", "");
   }
 });
 

@@ -26,6 +26,7 @@
         <label for="to-address">To</label>
         <input
           id="toAddress"
+          required
           name="toAddress"
           type="text"
           placeholder="Enter to emails (separated by comma)"
@@ -34,7 +35,12 @@
 
         <!-- input to subject -->
         <label for="subject">Subject</label>
-        <input name="subject" type="text" placeholder="Enter subject" />
+        <input
+          required
+          name="subject"
+          type="text"
+          placeholder="Enter subject"
+        />
 
         <!-- input to body -->
         <label for="body"
@@ -58,6 +64,7 @@
         ></label>
         <div class="grow-wrap">
           <textarea
+            required
             onInput="this.parentNode.dataset.replicatedValue = this.value"
             class="body-textarea"
             name="body"
@@ -66,7 +73,7 @@
         </div>
 
         <!-- form submit button -->
-        <button type="submit">Generate link</button>
+        <button type="submit" id="submitBtn">Generate link</button>
       </form>
 
       <!-- modal to show instructions -->
