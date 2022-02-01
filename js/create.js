@@ -42,9 +42,9 @@ templateForm.addEventListener("submit", function (e) {
 
   if (isToAddressValid) {
     //encode toAddress, subject, body to base64 each
-    const EncodedToAddress = btoa(toAddress);
-    const EncodedSubject = btoa(subject);
-    const EncodedBody = btoa(body);
+    const EncodedToAddress = Base64.encode(toAddress);
+    const EncodedSubject = Base64.encode(subject);
+    const EncodedBody = Base64.encode(body);
 
     let copyAndEndLoading = () => {
       Toastify({

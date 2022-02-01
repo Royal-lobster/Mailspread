@@ -10,9 +10,9 @@ queries.forEach((query) => {
 });
 
 // decode the values from base64 in queryObject
-let decodedToAddress = atob(queryObject.toAddress);
-let decodedSubject = atob(queryObject.subject);
-let decodedBody = atob(queryObject.body);
+let decodedToAddress = Base64.decode(queryObject.toAddress);
+let decodedSubject = Base64.decode(queryObject.subject);
+let decodedBody = Base64.decode(queryObject.body);
 
 console.log(decodedToAddress);
 console.log(decodedSubject);
