@@ -2,6 +2,8 @@
 
 Generate Email Templates with forms 🔥 
 
+Mailspread lets you to create email template with template tags (left out to fill by your users) and creates a share link. It contains a form and a button to regenerate the template this time with filled in form details in user's email app by mailto link. 
+
 👉 Useful in situations like bunch of people to send a same email template to same set of receivers ⚖️, collecting user information by email which is universal ♾️, creating mini surveys without using other third party apps 📶, etc.
 
 🔗 **Link:** https://mailspread.netlify.app/
