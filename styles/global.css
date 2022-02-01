@@ -52,6 +52,9 @@ html::-webkit-scrollbar {
 .darker-highlight {
   background-color: #524d12 !important;
 }
+.modal-header {
+  margin-bottom: 25px;
+}
 .card {
   margin: 0 auto;
 }

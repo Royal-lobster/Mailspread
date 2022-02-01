@@ -124,7 +124,7 @@
       <!-- modal to show instructions -->
       <dialog id="modal">
         <article>
-          <header>
+          <header class="modal-header">
             <a
               href="#close"
               aria-label="Close"
@@ -134,11 +134,16 @@
             How to use Template Tags in body
           </header>
           <p>
-            Template Tags are of form <code>{{full_name}}</code>. You can also
-            add types to template tags like this
-            <code>{{roll_number:number}}</code> or
-            <code>{{start_date:date}}</code>
-            the default type is text and hence mentioning it is optional
+            Template Tags are of form <code>{{value:type}}</code>.
+            <code>value</code> can be any thing like "phone", "full name",
+            "address", etc. <code>type</code> is the type of value like number,
+            text, date, etc. (all html input types are supported).
+          </p>
+          <p>
+            Some of the examples are <code>{{full name : text}}</code>
+            <code>{{roll : number}}</code>, <code>{{deadline : date}}</code> the
+            <b>default type is text</b> and hence mentioning it is optional. eg:
+            <code>{{full name}}</code>
           </p>
         </article>
       </dialog>
