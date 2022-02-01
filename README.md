@@ -1,8 +1,8 @@
 # MailSpread
 
-Generate Email Tamplates with forms 🔥 
+Generate Email Templates with forms 🔥 
 
-👉 Useful in situations like bunch of people to send a same email tamplate to same set of recivers ⚖️, collecting user information by email which is universal ♾️, creating mini surveys without using other third party apps 📶, etc
+👉 Useful in situations like bunch of people to send a same email template to same set of receivers ⚖️, collecting user information by email which is universal ♾️, creating mini surveys without using other third party apps 📶, etc.
 
 🔗 **Link:** https://mailspread.netlify.app/
 
