@@ -61,21 +61,29 @@ templateForm.addEventListener("submit", function (e) {
       const url = `${window.location.origin}/send.html?toAddress=${EncodedToAddress}&subject=${EncodedSubject}&body=${EncodedBody}`;
 
       //create a tiny url using tinyurl.com
-      const tinyUrlRes = await fetch(
-        `https://tinyurl.com/api-create.php?url=${url}`,
-        {
-          referrerPolicy: "strict-origin-when-cross-origin",
-          body: null,
-          method: "GET",
-          mode: "cors",
-          credentials: "omit",
-        }
-      );
-      navigator.clipboard.writeText(await tinyUrlRes.text());
-      copyAndEndLoading();
+      try {
+        const tinyUrlRes = await fetch(
+          `https://tinyurl.com/api-create.php?url=${url}`,
+          {
+            referrerPolicy: "strict-origin-when-cross-origin",
+            body: null,
+            method: "GET",
+            mode: "cors",
+            credentials: "omit",
+          }
+        );
+        await navigator.clipboard.writeText(await tinyUrlRes.text());
+        copyAndEndLoading();
+      } catch (e) {
+        await navigator.clipboard.writeText(url);
+        copyAndEndLoading();
+      }
     };
     createAndCopyURL();
-  } else {
+  }
+
+  // from validation steps
+  else {
     if (!isToAddressValid) {
       document.getElementById("toAddress").setAttribute("aria-invalid", "true");
       Toastify({
@@ -116,7 +124,6 @@ $(".body-textarea").highlightWithinTextarea({
     },
   ],
 });
-autosize($("textarea"));
 
-// regex to match value part in {{key:value}} starting from : to end }
-const regex = /\{\{(.*?)\}\}/g;
+//autosize textarea to grow its height dynamically
+autosize($("textarea"));
