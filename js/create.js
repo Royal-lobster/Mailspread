@@ -29,72 +29,45 @@ templateForm.addEventListener("submit", function (e) {
   const subject = templateForm.elements["subject"].value;
   const body = templateForm.elements["body"].value;
 
-  // check if toAddress is valid
-  let emails = toAddress.replace(/\s/g, "").split(",");
-  let isToAddressValid = true;
-  let regex =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  for (var i = 0; i < emails.length; i++) {
-    if (emails[i] == "" || !regex.test(emails[i])) {
-      isToAddressValid = false;
-    }
-  }
+  //encode toAddress, subject, body to base64 each
+  const EncodedToAddress = Base64.encode(toAddress);
+  const EncodedSubject = Base64.encode(subject);
+  const EncodedBody = Base64.encode(body);
 
-  if (isToAddressValid) {
-    //encode toAddress, subject, body to base64 each
-    const EncodedToAddress = Base64.encode(toAddress);
-    const EncodedSubject = Base64.encode(subject);
-    const EncodedBody = Base64.encode(body);
-
-    let copyAndEndLoading = () => {
-      Toastify({
-        text: "Copied to clipboard",
-        style: {
-          background: "linear-gradient(to right, #1ab3e6, #167D99)",
-        },
-      }).showToast();
-      submitBtn.setAttribute("aria-busy", "");
-      submitBtn.textContent = "Generate link";
-    };
-    let createAndCopyURL = async () => {
-      //create a new URL at address /send.html
-      const url = `${window.location.origin}/send.html?toAddress=${EncodedToAddress}&subject=${EncodedSubject}&body=${EncodedBody}`;
-
-      //create a tiny url using tinyurl.com
-      try {
-        const tinyUrlRes = await fetch(
-          `https://tinyurl.com/api-create.php?url=${url}`,
-          {
-            referrerPolicy: "strict-origin-when-cross-origin",
-            body: null,
-            method: "GET",
-            mode: "cors",
-            credentials: "omit",
-          }
-        );
-        await navigator.clipboard.writeText(await tinyUrlRes.text());
-        copyAndEndLoading();
-      } catch (e) {
-        await navigator.clipboard.writeText(url);
-        copyAndEndLoading();
-      }
-    };
-    createAndCopyURL();
-  }
-
-  // from validation steps
-  else {
-    if (!isToAddressValid) {
-      document.getElementById("toAddress").setAttribute("aria-invalid", "true");
-      Toastify({
-        text: "Invalid To Address",
-        style: {
-          background: "red",
-        },
-      }).showToast();
-    }
+  let copyAndEndLoading = () => {
+    Toastify({
+      text: "Copied to clipboard",
+      style: {
+        background: "linear-gradient(to right, #1ab3e6, #167D99)",
+      },
+    }).showToast();
     submitBtn.setAttribute("aria-busy", "");
-  }
+    submitBtn.textContent = "Generate link";
+  };
+  let createAndCopyURL = async () => {
+    //create a new URL at address /send.html
+    const url = `${window.location.origin}/send.html?toAddress=${EncodedToAddress}&subject=${EncodedSubject}&body=${EncodedBody}`;
+
+    //create a tiny url using tinyurl.com
+    try {
+      const tinyUrlRes = await fetch(
+        `https://tinyurl.com/api-create.php?url=${url}`,
+        {
+          referrerPolicy: "strict-origin-when-cross-origin",
+          body: null,
+          method: "GET",
+          mode: "cors",
+          credentials: "omit",
+        }
+      );
+      await navigator.clipboard.writeText(await tinyUrlRes.text());
+      copyAndEndLoading();
+    } catch (e) {
+      await navigator.clipboard.writeText(url);
+      copyAndEndLoading();
+    }
+  };
+  createAndCopyURL();
 });
 
 // modal open and close functions

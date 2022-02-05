@@ -14,20 +14,9 @@ let decodedToAddress = Base64.decode(queryObject.toAddress);
 let decodedSubject = Base64.decode(queryObject.subject);
 let decodedBody = Base64.decode(queryObject.body);
 
-console.log(decodedToAddress);
-console.log(decodedSubject);
-console.log(decodedBody);
-
-// clean up all template tags in decodedBody of type {{key:value}} or {{key}}
-// by lowercasing {{key}} and {{key:value}} and removing all spaces
-let templateRegex = /\{\{(.*?)\}\}/g;
-decodedBody = decodedBody.replace(templateRegex, (match, p1) => {
-  return `{{${p1.toLowerCase().replace(/\s/g, "_")}}}`;
-});
-
 // parse the decoded Body for template tags
+let templateRegex = /\{\{(.*?)\}\}/g;
 let templateTags = decodedBody.match(templateRegex);
-console.log(templateTags);
 
 // for each template tag of form {{key:value}},
 // create an object with key = key and value = value
@@ -35,15 +24,16 @@ let templateTagObjects = {};
 templateTags?.forEach((templateTag) => {
   let key = templateTag.split(":")[0];
   let value = templateTag.split(":")[1] || "text";
-  // remove the {{}} from the key and value using regex
-  key = key?.replace(/\{\{|\}\}/g, "");
-  value = value?.replace(/\{\{|\}\}/g, "");
+  // remove the curly braces from the key and value using regex
+  key = key?.replaceAll("{", "").replaceAll("}", "").trim().toLowerCase();
+  value = value?.replaceAll("}", "").trim().toLowerCase();
+  //update template tag object with new key and value
   templateTagObjects[key] = value;
 });
-console.log(templateTagObjects);
 
 // insert decodedSubject into the header
 document.getElementById("subject").textContent = decodedSubject;
+
 // create a html form in the DOM inside main tag
 let form = document.createElement("form");
 form.setAttribute("class", "form");
@@ -56,7 +46,7 @@ Object.keys(templateTagObjects)?.forEach((key) => {
   let input = document.createElement("input");
   label.innerText = key.replace(/_/g, " ");
   label.style.textTransform = "capitalize";
-  input.setAttribute("type", templateTagObjects[key].replace(/_/g, ""));
+  input.setAttribute("type", templateTagObjects[key]);
   input.setAttribute("name", key);
   input.setAttribute("required", "");
   input.setAttribute("placeholder", `Enter ${key.replace(/_/g, " ")}`);
@@ -83,18 +73,19 @@ form.addEventListener("submit", (e) => {
       values[input.getAttribute("name")] = input.value;
     }
   });
-  console.log(values);
+
   // replace the template tags in the body with the values
   let newBody = decodedBody;
   Object.keys(values)?.forEach((key) => {
+    console.log(key);
     let value = values[key];
-    let regex = new RegExp(`{{${key}(:.*?)?}}`, "g");
+    let regex = new RegExp(`{{${key}.*?(:.*?)?}}`, "gi");
     newBody = newBody.replace(regex, value);
+    console.log(newBody);
   });
-  console.log(newBody);
+
   // create a mailto link with the new body, decodedToAddress,
-  // decodedSubject by replacing newlines with %0D%0A , spaces with %20, tabs with %09,
-  // and other special characters with %xx
+  // decodedSubject by replacing any special symbols with their respective codings
   let mailto = `mailto:${decodedToAddress}?subject=${decodedSubject}&body=${newBody
     .replace(/\n/g, "%0D%0A")
     .replace(/ /g, "%20")
@@ -106,7 +97,7 @@ form.addEventListener("submit", (e) => {
     .replace(/\#/g, "%23")
     .replace(/\:/g, "%3A")
     .replace(/\;/g, "%3B")}`;
-  console.log(mailto);
+
   // open the mailto link in the user's default email client
   window.open(mailto);
 });
