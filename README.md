@@ -8,6 +8,8 @@ Mailspread lets you to create email template with template tags (left out to fil
 
 🔗 **Link:** https://mailspread.netlify.app/
 
+check out the blog post for more information : https://blog.srujangurram.me/how-i-made-a-tiny-web-app-that-lets-you-share-email-templates-in-style
+
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 ## Screenshots
 
