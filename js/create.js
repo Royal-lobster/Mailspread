@@ -60,7 +60,10 @@ templateForm.addEventListener("submit", function (e) {
           credentials: "omit",
         }
       );
-      await navigator.clipboard.writeText(await tinyUrlRes.text());
+      if(tinyUrlRes.ok)
+        await navigator.clipboard.writeText(await tinyUrlRes.text());
+      else
+        navigator.clipboard.writeText(url)
       copyAndEndLoading();
     } catch (e) {
       await navigator.clipboard.writeText(url);
